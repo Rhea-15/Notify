@@ -12,7 +12,7 @@ function relTime(dt) {
   return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
 }
 
-export default function StudentDashboard({ userId }) {
+export default function StudentDashboard({ userId, userName }) {
   const [sessions, setSessions] = useState([]);
   const [tasks, setTasks] = useState([]);
 
@@ -29,7 +29,7 @@ export default function StudentDashboard({ userId }) {
       <div style={{ marginBottom: 28 }}>
         <div style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 4 }}>Welcome back,</div>
         <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 800 }}>
-          Ananya Sharma
+          {userName || 'Student'}   {/* <-- was hardcoded 'Ananya Sharma' */}
         </div>
       </div>
 
