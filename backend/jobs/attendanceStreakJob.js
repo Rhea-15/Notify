@@ -20,8 +20,9 @@ async function run() {
 }
 
 function start() {
-  cron.schedule('0 8 * * *', run);
-  console.log('[AttendanceStreakJob] Scheduled daily at 8am');
+  run(); // fire once on boot
+  cron.schedule('* * * * *', run); // every minute for demo
+  console.log('[AttendanceStreakJob] Scheduled every minute (demo mode)');
 }
 
 module.exports = { start };

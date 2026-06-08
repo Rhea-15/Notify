@@ -11,11 +11,11 @@ async function seed() {
 
   // Users
   const users = [
-    ['Ananya Sharma', 'ananya@offbit.io', 'student', 'Frontend dev intern', 'React,CSS', 'Mon-Fri 9am-5pm'],
-    ['Rohit Verma',   'rohit@offbit.io',  'student', null, null, null],
-    ['Neha Iyer',     'neha@offbit.io',   'student', 'Backend enthusiast', 'Node,SQL', 'Mon-Wed'],
-    ['Arjun Mehta',   'arjun@offbit.io',  'mentor',  'Senior Engineer', 'System Design', 'Flexible'],
-    ['Admin User',    'admin@offbit.io',  'admin',   'Platform admin', null, null],
+    ['Ananya Sharma', 'unicornpeppy@gmail.com', 'student', 'Frontend dev intern', 'React,CSS', 'Mon-Fri 9am-5pm'],
+    ['Rohit Verma',   'unicornpeppy@gmail.com',  'student', null, null, null],
+    ['Neha Iyer',     'unicornpeppy@gmail.com',   'student', 'Backend enthusiast', 'Node,SQL', 'Mon-Wed'],
+    ['Arjun Mehta',   'arjun@gmail.com',  'mentor',  'Senior Engineer', 'System Design', 'Flexible'],
+    ['Admin User',    'admin@gmail.com',  'admin',   'Platform admin', null, null],
   ];
 
   users.forEach(([name, email, role, bio, skills, availability]) => {
@@ -66,7 +66,7 @@ async function seed() {
   dbRun(db, `INSERT INTO notification_templates (name, subject, body) VALUES (?,?,?)`,
     ['Streak Alert', 'Keep your streak going!', 'Hi {name}, your streak is at risk! You have missed {streak_count} sessions. Complete a task today.']);
   dbRun(db, `INSERT INTO notification_templates (name, subject, body) VALUES (?,?,?)`,
-    ['Profile Incomplete', 'Complete your Offbit profile', 'Hi {name}, your profile is incomplete. Please add your bio and skills to unlock all features.']);
+    ['Profile Incomplete', 'Complete your Notify profile', 'Hi {name}, your profile is incomplete. Please add your bio and skills to unlock all features.']);
   dbRun(db, `INSERT INTO notification_templates (name, subject, body) VALUES (?,?,?)`,
     ['Task Assigned', 'New task assigned: {task_title}', 'Hi {name}, a new task "{task_title}" has been assigned to you. Due: {due_date}.']);
   dbRun(db, `INSERT INTO notification_templates (name, subject, body) VALUES (?,?,?)`,

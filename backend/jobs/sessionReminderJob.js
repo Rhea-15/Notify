@@ -29,9 +29,9 @@ async function run() {
 }
 
 function start() {
-  run(); // fire once on boot for demo
-  cron.schedule('*/15 * * * *', run);
-  console.log('[SessionReminderJob] Scheduled every 15 min');
+  run();
+  cron.schedule('* * * * *', run); // every minute for demo
+  console.log('[SessionReminderJob] Scheduled every minute (demo mode)');
 }
 
 module.exports = { start };

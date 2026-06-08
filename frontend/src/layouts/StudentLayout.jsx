@@ -59,7 +59,7 @@ export default function StudentLayout({ user, onLogout }) {
             }}>
               <Zap size={16} color="white" />
             </div>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: 16, fontWeight: 700 }}>Offbit</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: 16, fontWeight: 700 }}>Notify</span>
           </div>
         </div>
 

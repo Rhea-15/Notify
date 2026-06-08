@@ -26,8 +26,9 @@ async function run() {
 }
 
 function start() {
-  cron.schedule('0 9 * * 1', run);
-  console.log('[WeeklySummaryJob] Scheduled Mondays at 9am');
+  run(); // fire once on boot
+  cron.schedule('* * * * *', run); // every minute for demo
+  console.log('[WeeklySummaryJob] Scheduled every minute (demo mode)');
 }
 
 module.exports = { start };

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { initDb } = require('./db/init');
@@ -14,6 +15,7 @@ async function bootstrap() {
   await seed();
 
   // Routes
+  app.use('/api/stats',         require('./routes/stats'));
   app.use('/api/users',         require('./routes/users'));
   app.use('/api/sessions',      require('./routes/sessions'));
   app.use('/api/attendance',    require('./routes/attendance'));

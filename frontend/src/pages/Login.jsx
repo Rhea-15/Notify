@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Zap } from 'lucide-react';
 
 const USERS = [
-  { id: 1, name: 'Ananya Sharma', email: 'ananya@offbit.io', password: 'student123', role: 'student' },
-  { id: 2, name: 'Rohit Verma',   email: 'rohit@offbit.io',  password: 'student123', role: 'student' },
-  { id: 4, name: 'Arjun Mehta',   email: 'arjun@offbit.io',  password: 'mentor123',  role: 'mentor'  },
-  { id: 5, name: 'Admin User',    email: 'admin@offbit.io',  password: 'admin123',   role: 'admin'   },
+  { id: 1, name: 'Ananya Sharma', email: 'unicornpeppy@gmail.com', password: 'student123', role: 'student' },
+  { id: 2, name: 'Rohit Verma',   email: 'rohit@gmail.com',  password: 'student123', role: 'student' },
+  {id: 3, name: 'Neha Iyer', email: 'unicornpeppy@gmail.com', password: 'student123', role:'student'},
+  { id: 4, name: 'Arjun Mehta',   email: 'arjun@gmail.com',  password: 'mentor123',  role: 'mentor'  },
+  { id: 5, name: 'Admin User',    email: 'admin@gmail.com',  password: 'admin123',   role: 'admin'   },
 ];
 
 export default function Login({ onLogin }) {
@@ -57,7 +58,7 @@ export default function Login({ onLogin }) {
             <Zap size={24} color="white" />
           </div>
           <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 800, color: 'var(--text-primary)' }}>
-            Offbit
+            Notify
           </div>
           <div style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 6 }}>
             Sign in to your workspace
@@ -74,7 +75,7 @@ export default function Login({ onLogin }) {
               <input
                 className="input"
                 type="email"
-                placeholder="you@offbit.io"
+                placeholder="user@noify.io"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleSubmit()}
@@ -125,7 +126,6 @@ export default function Login({ onLogin }) {
         {/* Quick login pills */}
         <div style={{ marginTop: 24 }}>
           <div style={{ fontSize: 11, color: 'var(--text-muted)', textAlign: 'center', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>
-            Quick login (demo)
           </div>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
             {USERS.map(u => (

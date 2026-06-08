@@ -69,7 +69,7 @@ export default function LogsPage() {
             <table>
               <thead>
                 <tr>
-                  <th>User</th><th>Trigger</th><th>Channel</th><th>Status</th><th>Sent At</th><th>Meta</th>
+                  <th>User</th><th>Trigger</th><th>Channel</th><th>Status</th><th>Sent At</th>
                 </tr>
               </thead>
               <tbody>
@@ -89,17 +89,6 @@ export default function LogsPage() {
                       }}>{l.status}</span>
                     </td>
                     <td style={{ fontSize: 12, color: 'var(--text-muted)' }}>{new Date(l.sent_at).toLocaleString()}</td>
-                    <td>
-                      {l.meta && (
-                        <button
-                          title={l.meta}
-                          style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 6, padding: '4px 8px', color: 'var(--text-muted)', cursor: 'pointer' }}
-                          onClick={() => alert(JSON.stringify(JSON.parse(l.meta), null, 2))}
-                        >
-                          <FileJson size={13} />
-                        </button>
-                      )}
-                    </td>
                   </tr>
                 ))}
                 {logs.length === 0 && (
