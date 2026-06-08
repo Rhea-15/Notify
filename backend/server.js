@@ -6,6 +6,7 @@ const { seed } = require('./db/seed');
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use('/api/stats', require('./routes/stats'));
 
 async function bootstrap() {
   // Must await DB init before anything else

@@ -7,6 +7,11 @@ import {
 import NotificationDrawer from '../components/NotificationDrawer.jsx';
 import StudentDashboard from '../pages/StudentDashboard.jsx';
 import { get } from '../api/client.js';
+import SessionsPage  from '../pages/SessionsPage.jsx';
+import TasksPage     from '../pages/TasksPage.jsx';
+import ProgressPage  from '../pages/ProgressPage.jsx';
+import ProfilePage   from '../pages/ProfilePage.jsx';
+import SettingsPage  from '../pages/SettingsPage.jsx';
 
 const NAV = [
   { icon: LayoutDashboard, label: 'Dashboard',   path: '/student' },
@@ -20,16 +25,16 @@ const NAV = [
 export default function StudentLayout({ user, onLogout }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [unread, setUnread]         = useState(0);
-  const navigate  = useNavigate();
-  const location  = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetchUnread = async () => {
       const data = await get(`/notifications?user_id=${user.id}&unread=true`);
       setUnread(Array.isArray(data) ? data.length : 0);
     };
-    fetch();
-    const iv = setInterval(fetch, 30000);
+    fetchUnread();
+    const iv = setInterval(fetchUnread, 30000);
     return () => clearInterval(iv);
   }, [user.id]);
 
@@ -37,7 +42,6 @@ export default function StudentLayout({ user, onLogout }) {
     <div className="layout">
       <div className="bg-mesh" />
 
-      {/* Sidebar */}
       <aside style={{
         width: 'var(--sidebar-w)', minWidth: 'var(--sidebar-w)',
         background: 'var(--bg-surface)', borderRight: '1px solid var(--border)',
@@ -116,12 +120,12 @@ export default function StudentLayout({ user, onLogout }) {
             onClick={() => setDrawerOpen(true)}
             style={{
               display: 'flex', alignItems: 'center', gap: 10,
-              padding: '9px 12px', borderRadius: 8,
+              padding: '13px 12px 9px', borderRadius: 8,
               background: 'transparent', color: 'var(--text-secondary)',
               fontSize: 13, fontWeight: 400,
               width: '100%', textAlign: 'left', cursor: 'pointer',
               transition: 'all 0.15s', marginTop: 4,
-              borderTop: '1px solid var(--border)', paddingTop: 13,
+              borderTop: '1px solid var(--border)',
             }}
             onMouseEnter={e => { e.currentTarget.style.background = 'var(--blue-dim)'; e.currentTarget.style.color = 'var(--blue)'; }}
             onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
@@ -176,7 +180,6 @@ export default function StudentLayout({ user, onLogout }) {
 
       {/* Main */}
       <div className="main-content" style={{ position: 'relative', zIndex: 1 }}>
-        {/* Topbar */}
         <header style={{
           height: 60, background: 'var(--bg-surface)',
           borderBottom: '1px solid var(--border)',
@@ -201,14 +204,15 @@ export default function StudentLayout({ user, onLogout }) {
         </header>
 
         <div className="page fade-up">
+          {/* KEY FIX: relative paths, App already matched /student/* */}
           <Routes>
-            <Route path="/student"          element={<StudentDashboard userId={user.id} userName={user.name} />} />
-            <Route path="/student/sessions" element={<StudentDashboard userId={user.id} userName={user.name} />} />
-            <Route path="/student/tasks"    element={<StudentDashboard userId={user.id} userName={user.name} />} />
-            <Route path="/student/progress" element={<StudentDashboard userId={user.id} userName={user.name} />} />
-            <Route path="/student/profile"  element={<StudentDashboard userId={user.id} userName={user.name} />} />
-            <Route path="/student/settings" element={<StudentDashboard userId={user.id} userName={user.name} />} />
-            <Route path="*"                 element={<Navigate to="/student" />} />
+          <Route index           element={<StudentDashboard userId={user.id} userName={user.name} />} />
+          <Route path="sessions" element={<SessionsPage    userId={user.id} />} />
+          <Route path="tasks"    element={<TasksPage        userId={user.id} />} />
+          <Route path="progress" element={<ProgressPage     userId={user.id} />} />
+          <Route path="profile"  element={<ProfilePage      userId={user.id} />} />
+          <Route path="settings" element={<SettingsPage />} />
+          <Route path="*"        element={<Navigate to="/student" />} />
           </Routes>
         </div>
       </div>

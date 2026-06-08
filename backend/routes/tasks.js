@@ -26,4 +26,11 @@ router.post('/', async (req, res) => {
   res.json({ id: result.lastInsertRowid });
 });
 
+router.patch('/:id/status', async (req, res) => {
+  const db = await getDb();
+  const { status } = req.body;
+  dbRun(db, 'UPDATE tasks SET status=? WHERE id=?', [status, req.params.id]);
+  res.json({ success: true });
+});
+
 module.exports = router;

@@ -25,7 +25,6 @@ export default function AdminLayout({ user, onLogout }) {
     <div className="layout">
       <div className="bg-mesh" />
 
-      {/* Sidebar */}
       <aside style={{
         width: 'var(--sidebar-w)', minWidth: 'var(--sidebar-w)',
         background: 'var(--bg-surface)', borderRight: '1px solid var(--border)',
@@ -66,7 +65,7 @@ export default function AdminLayout({ user, onLogout }) {
               <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                 {user.name}
               </div>
-              <div style={{ fontSize: 10, color: 'var(--purple)', textTransform: 'capitalize', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 3 }}>
+              <div style={{ fontSize: 10, color: 'var(--purple)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 3 }}>
                 <ShieldCheck size={10} /> Admin
               </div>
             </div>
@@ -121,7 +120,6 @@ export default function AdminLayout({ user, onLogout }) {
 
       {/* Main */}
       <div className="main-content" style={{ position: 'relative', zIndex: 1 }}>
-        {/* Topbar */}
         <header style={{
           height: 60, background: 'var(--bg-surface)',
           borderBottom: '1px solid var(--border)',
@@ -139,20 +137,21 @@ export default function AdminLayout({ user, onLogout }) {
             }}>{user.name[0]}</div>
             <div>
               <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)' }}>{user.name}</div>
-              <div style={{ fontSize: 11, color: 'var(--purple)', textTransform: 'capitalize', fontWeight: 600 }}>Admin</div>
+              <div style={{ fontSize: 11, color: 'var(--purple)', fontWeight: 600 }}>Admin</div>
             </div>
             <ChevronDown size={14} color="var(--text-muted)" />
           </div>
         </header>
 
         <div className="page fade-up">
+          {/* KEY FIX: relative paths (no /admin prefix) because App already matched /admin/* */}
           <Routes>
-            <Route path="/admin"           element={<AdminDashboard />} />
-            <Route path="/admin/rules"     element={<RulesPage />} />
-            <Route path="/admin/templates" element={<TemplatesPage />} />
-            <Route path="/admin/logs"      element={<LogsPage />} />
-            <Route path="/admin/settings"  element={<AdminDashboard />} />
-            <Route path="*"                element={<Navigate to="/admin" />} />
+            <Route index                  element={<AdminDashboard />} />
+            <Route path="rules"           element={<RulesPage />} />
+            <Route path="templates"       element={<TemplatesPage />} />
+            <Route path="logs"            element={<LogsPage />} />
+            <Route path="settings"        element={<AdminDashboard />} />
+            <Route path="*"               element={<Navigate to="/admin" />} />
           </Routes>
         </div>
       </div>
